@@ -1,0 +1,139 @@
+# Simple Port Scanning
+
+This directory contains basic TCP port scanning scripts for learning network security fundamentals.
+
+## Scripts
+
+### ipv4_tcp_portscanneer.py
+IPv4 TCP port scanner using Python's socket library.
+
+**Features:**
+- Tests TCP port connectivity on IPv4 addresses
+- Uses socket.connect_ex() for non-blocking connection attempts
+- Returns port status (open/closed)
+
+**Default Configuration:**
+- Target: 192.168.1.4
+- Port: 443 (HTTPS)
+
+**Usage:**
+```bash
+python ipv4_tcp_portscanneer.py
+```
+
+**How it works:**
+1. Creates an IPv4 TCP socket (AF_INET, SOCK_STREAM)
+2. Attempts to connect to the specified host and port
+3. Returns 0 if connection succeeds (port is open)
+4. Returns error code if connection fails (port is closed)
+
+### ipv6_tcp_portscanner.py
+IPv6 TCP port scanner for testing IPv6-enabled systems.
+
+**Features:**
+- Scans TCP ports on IPv6 addresses
+- Uses AF_INET6 socket family
+- Supports IPv6 loopback and remote addresses
+
+**Default Configuration:**
+- Target: ::1 (IPv6 localhost)
+- Port: 443 (HTTPS)
+
+**Usage:**
+```bash
+python ipv6_tcp_portscanner.py
+```
+
+**How it works:**
+1. Creates an IPv6 TCP socket (AF_INET6, SOCK_STREAM)
+2. Uses connect_ex() with IPv6 tuple format (host, port, 0, 0)
+3. Checks return value: 0 = open, non-zero = closed
+
+## Customization
+
+To scan different hosts or ports, modify the variables in each script:
+
+```python
+# IPv4 example
+host = "192.168.1.1"  # Change to your target IP
+port = 80              # Change to your target port
+
+# IPv6 example
+host = "2001:db8::1"   # Change to your target IPv6 address
+port = 22              # Change to your target port
+```
+
+## Learning Objectives
+
+- Understand TCP connection basics
+- Learn socket programming in Python
+- Recognize differences between IPv4 and IPv6 addressing
+- Grasp basic port scanning concepts
+
+## Limitations
+
+- **Single Port:** Only scans one port at a time
+- **No Threading:** Synchronous operation only
+- **Basic Detection:** Simple connect scan (easily detected)
+- **No Error Handling:** Minimal exception handling
+- **Python 2:** Uses legacy Python 2 syntax
+
+## Improvements to Try
+
+1. **Port Range Scanning:** Loop through multiple ports
+2. **Command Line Arguments:** Use argparse or sys.argv
+3. **Threading:** Scan multiple ports concurrently
+4. **Service Detection:** Identify services running on open ports
+5. **Output Formatting:** Save results to file or JSON
+6. **Python 3 Migration:** Update print statements and syntax
+
+## Security & Ethics
+
+⚠️ **WARNING:** 
+- Only scan systems you own or have explicit permission to test
+- Unauthorized port scanning can be illegal
+- Some networks have intrusion detection systems that log scanning activity
+- Use responsibly and ethically
+
+## Common Ports to Test
+
+- 21 - FTP
+- 22 - SSH
+- 23 - Telnet
+- 25 - SMTP
+- 53 - DNS
+- 80 - HTTP
+- 443 - HTTPS
+- 3306 - MySQL
+- 3389 - RDP
+- 5432 - PostgreSQL
+- 8080 - HTTP Alternate
+
+## Troubleshooting
+
+**"Connection refused" errors:**
+- Port is closed or filtered by firewall
+- Service not running on target port
+
+**"No route to host" errors:**
+- Target host is down or unreachable
+- Network routing issue
+- Check IP address is correct
+
+**"Network unreachable" errors:**
+- No network connection
+- IPv6 not configured (for IPv6 scanner)
+- Wrong network interface
+
+## Next Steps
+
+After mastering these basics, explore:
+- Multi-threaded port scanners
+- SYN scanning (requires raw sockets/root privileges)
+- UDP port scanning
+- Banner grabbing and service fingerprinting
+- Using professional tools like Nmap
+
+---
+
+**Note:** These are educational scripts. For production security testing, use professional tools like Nmap, Masscan, or Zmap.
