@@ -3,7 +3,7 @@
 import socket
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
+socket.setdefaulttimeout(5)
 host = input("Enter the IP address of the host: ")
 port = int(input("Enter the port: "))
 
