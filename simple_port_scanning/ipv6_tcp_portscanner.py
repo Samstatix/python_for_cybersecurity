@@ -5,6 +5,7 @@ host = input("Enter the IP address of the host: ")
 port = int(input("Enter the port: "))
 
 sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+socket.setdefaulttimeout(5)
 
 def portscanner(port):
     if sock.connect_ex((host, port, 0, 0)) == 0:
