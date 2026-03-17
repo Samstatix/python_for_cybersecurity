@@ -4,8 +4,8 @@ import socket
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-host = "192.168.1.4"
-port = 443
+host = input("Enter the IP address of the host: ")
+port = int(input("Enter the port: "))
 
 def portscanner(port):
     if sock.connect_ex((host, port)):
